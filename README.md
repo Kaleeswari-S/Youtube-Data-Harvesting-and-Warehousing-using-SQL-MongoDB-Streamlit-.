@@ -1,9 +1,33 @@
 # Youtube-Data-Harvesting-and-Warehousing-using-SQL-MongoDB-Streamlit.
-## Domain:
+
+## DOMAIN:
 **Social Media**
-## Problem Statement:
+
+## PROBLEM STATEMENT:
 
 The task is to build a Streamlit app that permits users to analyze data from multiple YouTube channels. Users can input a YouTube channel ID to access data like channel information, video details, and user engagement. The app should facilitate storing the data in a MongoDB database and allow users to collect data from up to 10 different channels. Additionally, it should offer the capability to migrate selected channel data from the data lake to a SQL database for further analysis. The app should enable searching and retrieval of data from the SQL database, including advanced options like joining tables for comprehensive channel information.
+
+## TOOLS TO BE USED :
+
+* *Streamlit* library was used to create a user-friendly UI that enables users to interact with the programme and carry out data retrieval and analysis operations.
+
+* *Python* is a powerful programming language renowned for being easy to learn and understand. Python is the primary language employed in this project for the development of the complete application, including data retrieval, processing, analysis, and visualisation.
+
+* *MongoDB* is built on a scale-out architecture that has become popular with developers of all kinds for developing scalable applications with evolving data schemas. As a document database, MongoDB makes it easy for developers to store structured or unstructured data. It uses a JSON-like format to store documents.
+
+* *PostgreSQL* is an open-source, advanced, and highly scalable database management system (DBMS) known for its reliability and extensive features. It provides a platform for storing and managing structured data, offering support for various data types and advanced SQL capabilities.
+
+## REQUIRED LIBRARIES:
+
+1.googleapiclient.discovery
+
+2.streamlit
+
+3.psycopg2
+
+4.pymongo
+
+5.pandas
 
 ## Approach:
 
