@@ -502,17 +502,14 @@ def show_comments_table():
     comments_table = st.dataframe(com_list)
     return comments_table
 
-
-
-
 # SETTING PAGE CONFIGURATIONS
 st.set_page_config(page_title= "Youtube Data Capstone",
                    layout= "wide",
                    initial_sidebar_state= "expanded")
 
 with st.sidebar:
-    selected = option_menu(None, ["Home","Store Data","Migrate Data","View","Query"],
-                           icons=["house-door-fill","cloud-upload","✈️","card-text","list-task"],
+    selected = option_menu(None, ["Home","Upload Data to MongoDB","Migrate Data to SQL","View","Analysis using SQL"],
+                           icons=["house-door-fill","cloud-upload","database","card-text","list-task"],
                            default_index=0,
                            orientation="vertical",
                            styles={"nav-link": {"font-size": "20px", "text-align": "centre", "margin": "0px",
@@ -523,13 +520,13 @@ with st.sidebar:
 
 #Home Page
 if selected == "Home":
-  st.title('Youtube Data Harvesting and Warehousing')
+  st.title(':red[You]Tube Data Harvesting and Warehousing')
   st.header('Using SQL, MongoDB and Streamlit',divider = 'rainbow')
   st.header('by _Kaleeswari S_')
-  st.markdown("Let's Start :smile:")
+  st.text("Let's Start :smile:")
 
 #Store Data Page
-if selected == "Store Data":
+if selected == "Upload Data to MongoDB":
   channel_id = st.text_input("Enter the Channel id")
   channels = channel_id.split(',')
   channels = [ch.strip() for ch in channels if ch]
@@ -546,16 +543,12 @@ if selected == "Store Data":
           else:
               output = channel_details(channel)
               st.success(output)
-              st.write("Data stored in :green[**MongoDB**🍀]")
-          st.snow() 
 
 #Migrate Data Page
-if selected == "Migrate Data":
-  st.header("Data Migrated from MongoDB to SQL Data Warehouse")
+if selected == "Migrate Data to SQL":
   if st.button("Migrate to SQL"):
     display = tables()
     st.success(display)
-    st.balloons()
 
 #View Page
 if selected == "View":
@@ -571,7 +564,7 @@ if selected == "View":
       show_comments_table()
 
 #Query Page
-if selected == "Query":
+if selected == "Analysis using SQL":
   st.write("## :orange[Select any question to get Insights]")
   question = st.selectbox('Questions',
   ['Click the question that you would like to query',
@@ -585,13 +578,14 @@ if selected == "Query":
     '8. What are the names of all the channels that have published videos in the year 2022?',
     '9. What is the average duration of all videos in each channel, and what are their corresponding channel names?',
     '10. Which videos have the highest number of comments, and what are their corresponding channel names?'])
+  
   mydb = psycopg2.connect(host="localhost",
                         user="postgres",
                         password="ram7",
                         database= "ytb_dbase",
                         port = "5432"
                         )
-  
+
   cursor = mydb.cursor()
 
   if question == '1. What are the names of all the videos and their corresponding channels?':
