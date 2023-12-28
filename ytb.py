@@ -18,6 +18,19 @@ def Api_connect():
 youtube=Api_connect()
 
 
+#Pyhton Programmer : "UC68KSmHePPePCjW4v57VPQg" 
+#Learn Tech : "UCzNFj4KZTV72DsrGoDquVQQ" 
+#Data Nash : "UCRqCK8izkO5xeVVtMKSHeRQ" 
+#Joma Tech : "UCV0qA-eDDICsRR9rPcnG7tw" 
+#Alex The Analyst : "UC7cs8q-gJRlGwj4A8OmCmXg" 
+#StatQuest with Josh Starmer : "UCtYLUTtgS3k1Fg4y5tAhLbw" 
+#3Blue1Brown : "UCYO_jab_esuFRV4b17AJtAw" 
+#Ken Jee : "UCiT9RITQ9PW6BhXK0y2jaeg" 
+#Data Shool : "UCnVzApLJE2ljPZSeQylSEyg" 
+#365 Data Science : "UCEBpSZhI1X8WaP-kY_2LLcg"
+
+
+
 #get channel information
 def get_channel_info(channel_id):
 
@@ -170,7 +183,7 @@ def channel_details(channel_id):
     coll1.insert_one({"channel_information":ch_details,"playlist_information":pl_details,"video_information":vi_details,
                      "comment_information":com_details})
 
-    return "upload completed successfully"
+    return "Channel, Playlists, Videos, Comments details are uploaded successfully"
 
 
 # CONNECTING WITH MYSQL DATABASE
@@ -527,11 +540,30 @@ if selected == "Home":
 
 #Store Data Page
 if selected == "Upload Data to MongoDB":
+  st.markdown("**Enter the channel ID of youtube channel in below box**")
   channel_id = st.text_input("Enter the Channel id")
   channels = channel_id.split(',')
   channels = [ch.strip() for ch in channels if ch]
+  
+  if st.button("View details"):
 
-  if st.button("Collect and Store data"):
+        with st.spinner('Extraction in progress...'):
+
+            try:
+
+                extracted_details = get_channel_info(channel_id)
+                st.write('**:green[Channel Name]** :', extracted_details['Channel Name'])
+                st.write('**:green[Description]** :', extracted_details['Description'])
+                st.write('**:green[Total_Videos]** :', extracted_details['Total_Videos'])
+                st.write('**:green[Subscriber Count]** :', extracted_details['Subscribers'])
+                st.write('**:green[Total Views]** :', extracted_details['Total_Views'])
+                
+            except :
+
+                st.error("Invalid channelID.Enter valid input ID")
+
+
+  if st.button("Upload to MongoDB"):
       for channel in channels:
           ch_ids = []
           db = client["YouTube_Data"]
@@ -549,6 +581,7 @@ if selected == "Migrate Data to SQL":
   if st.button("Migrate to SQL"):
     display = tables()
     st.success(display)
+  st.balloons()
 
 #View Page
 if selected == "View":
