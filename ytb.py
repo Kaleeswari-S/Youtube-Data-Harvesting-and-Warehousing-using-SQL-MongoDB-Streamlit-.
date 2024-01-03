@@ -186,7 +186,7 @@ def channel_details(channel_id):
     return "Channel, Playlists, Videos, Comments details are uploaded successfully"
 
 
-# CONNECTING WITH MYSQL DATABASE
+# CONNECTING WITH PostgreSQL DATABASE
 def channels_table():
       mydb = psycopg2.connect(host="localhost",
                         user="postgres",
