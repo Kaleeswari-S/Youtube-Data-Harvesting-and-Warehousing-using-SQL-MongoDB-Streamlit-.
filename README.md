@@ -25,18 +25,6 @@ The task is to build a Streamlit app that permits users to analyze data from mul
 
 * *PostgreSQL* is an open-source, advanced, and highly scalable database management system (DBMS) known for its reliability and extensive features. It provides a platform for storing and managing structured data, offering support for various data types and advanced SQL capabilities.
 
-## REQUIRED LIBRARIES:
-
-1.googleapiclient.discovery
-
-2.streamlit
-
-3.psycopg2
-
-4.pymongo
-
-5.pandas
-
 ## APPROACH:
 
 1. Start by setting up a Streamlit application using the python library "streamlit", which provides an easy-to-use interface for users to enter a YouTube channel ID, view channel details, and select channels to migrate.
@@ -49,5 +37,6 @@ The task is to build a Streamlit app that permits users to analyze data from mul
 
 This project aims to develop a user-friendly Streamlit application that utilizes the Google API to extract information on a YouTube channel, stores it in a MongoDB database, migrates it to a SQL data warehouse, and enables users to search for channel details and join tables to view data in the Streamlit app.
 
+*Please watch my application demo video in below link and let me know your feedbacks.*
 
-
+Video URL : https://lnkd.in/g3Pj7dK4
