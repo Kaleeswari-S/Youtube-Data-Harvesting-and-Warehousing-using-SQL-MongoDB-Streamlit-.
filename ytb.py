@@ -544,44 +544,51 @@ if selected == "Upload Data to MongoDB":
   channel_id = st.text_input("Enter the Channel id")
   channels = channel_id.split(',')
   channels = [ch.strip() for ch in channels if ch]
-  
-  if st.button("View details"):
+  tab1, tab2, tab3 = st.tabs(["Detail", "Upload", "Migrate"])
 
-        with st.spinner('Extraction in progress...'):
+  with tab1:
+    st.header("Channel Detail")
 
-            try:
+    if st.button("View details"):
 
-                extracted_details = get_channel_info(channel_id)
-                st.write('**:green[Channel Name]** :', extracted_details['Channel Name'])
-                st.write('**:green[Description]** :', extracted_details['Description'])
-                st.write('**:green[Total_Videos]** :', extracted_details['Total_Videos'])
-                st.write('**:green[Subscriber Count]** :', extracted_details['Subscribers'])
-                st.write('**:green[Total Views]** :', extracted_details['Total_Views'])
+            with st.spinner('Extraction in progress...'):
                 
-            except :
+                try:
 
-                st.error("Invalid channelID.Enter valid input ID")
+                    extracted_details = get_channel_info(channel_id)
+                    st.write('**:green[Channel Name]** :', extracted_details['Channel_Name'])
+                    st.write('**:green[Description]** :', extracted_details['Channel_Description'])
+                    st.write('**:green[Total_Videos]** :', extracted_details['Total_Videos'])
+                    st.write('**:green[Subscriber Count]** :', extracted_details['Subscribers'])
+                    st.write('**:green[Total Views]** :', extracted_details['Views'])
+                   
 
+                except :
 
-  if st.button("Upload to MongoDB"):
-      for channel in channels:
-          ch_ids = []
-          db = client["YouTube_Data"]
-          coll1 = db["channel_details"]
-          for ch_data in coll1.find({},{"_id":0,"channel_information":1}):
-              ch_ids.append(ch_data["channel_information"]["Channel_Id"])
-          if channel in ch_ids:
-              st.success("Channel details of the given channel id: " + channel + " already exists")
-          else:
-              output = channel_details(channel)
-              st.success(output)
+                        st.error("Invalid channelID.Enter valid input ID")
+                
+                
+                    
+  with tab2:
+    st.header("Upload Data to MongoDB _(Atlas)_")
+    if st.button("Upload to MongoDB"):
+        for channel in channels:
+            ch_ids = []
+            db = client["YouTube_Data"]
+            coll1 = db["channel_details"]
+            for ch_data in coll1.find({},{"_id":0,"channel_information":1}):
+                ch_ids.append(ch_data["channel_information"]["Channel_Id"])
 
-#Migrate Data Page
-if selected == "Migrate Data to SQL":
-  if st.button("Migrate to SQL"):
-    display = tables()
-    st.success(display)
-  st.balloons()
+            st.success("Channel, Playlists, Videos, Comments details are uploaded successfully")
+
+        st.balloons()
+ 
+  with tab3:
+    st.header("Migrate data from MongoDB DataLake to SQL Data Warehouse")
+    if st.button("Migrate to SQL"):
+        display = tables()
+        st.success(display)
+        st.balloons()
 
 #View Page
 if selected == "View":
