@@ -9,11 +9,10 @@ import time
 #======================================================= SETTING STREAMLIT PAGE CONFIGURATIONS ===============================
 
 #st.title(":red[YOUTUBE DATA HARVESTING AND ANALYSING]")
-st.write(":white[|By Kaleeswari S]")
-st.markdown(
-    "<h1 style='color: red;'>YOUTUBE DATA HARVESTING AND ANALYSING</h1>", 
-    unsafe_allow_html=True
-)
+st.title(":red[You]Tube:rainbow[Data Harvesting & Warehousing]")
+st.header('Using SQL, MongoDB and Streamlit',divider = 'green')
+st.header('by _Kaleeswari S_')
+
 
 # CREATING OPTION MENU
 with st.sidebar:
@@ -351,16 +350,12 @@ def insert_into_comments():
 # HOME PAGE
 if option == "Home":
 
-    st.title(":red[**• Home Page**]")
-
-    st.subheader("D O M A I N")
-    st.markdown(":blue[Social Media]")
-    st.subheader("T E C H N O L O G I E S - U S E D")
-    st.markdown(":blue[Python, MongoDB, Youtube Data API, MySql, Streamlit]")
-    st.subheader("O V E R V I E W")
+    st.subheader("DOMAIN: :blue[Social Media]")
+    st.subheader("TECHNOLOGIES-USED")
+    st.markdown(":blue[Python, MongoDB, Youtube Data API, PostgreSql, Streamlit]")
+    st.subheader("OVERVIEW")
     st.markdown(
         ":blue[Retrieving  the  Youtube  channels  data  from  the  Google API,  storing  it  in  a  MongoDB  as  data  lake , migrating  and  transforming  data  into  a  SQL  database,  then  querying  the  data  and  displaying  it  in  the  Streamlit  app.]")
-
 
 
 if option == "Extract and Transform":
